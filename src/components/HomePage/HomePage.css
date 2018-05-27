@@ -1,5 +1,14 @@
 .homePage {
     display: flex;
-    align-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 200px;
+}
+
+.homePageButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
 }
