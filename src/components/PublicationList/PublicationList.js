@@ -6,8 +6,8 @@ function PublicationList(props) {
 
     return (
         <div>
-            {publications.map((publication, id) => (
-                <PublicationCard key={id} {...publication} />
+            {publications.map((publication) => (
+                <PublicationCard key={publication.id} {...publication} />
             ))}
         </div>
     );

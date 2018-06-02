@@ -15,9 +15,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 let middleware = applyMiddleware(router, sagaMiddleware);
 
-if (isInDevelopment()) {
+// if (isInDevelopment()) {
+    // console.log('IN DEVELOPMENT')
     middleware = composeWithDevTools(middleware);
-}
+// }
 
 const INITIAL_STATE = {};
 const store = createStore(

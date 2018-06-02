@@ -1,0 +1,151 @@
+{
+    "login": {
+        "id": 3,
+        "email": "test@mail.com",
+        "fullName": "John Doo",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ0ZXN0QG1haWwuY29tIiwiZnVsbE5hbWUiOiJKb2huIERvbyIsImlhdCI6MTUyNzk0NDIyMCwiZXhwIjoxNTI4MDMwNjIwfQ.4GNR_omPDrQyAWhXQQZfGXhF-pNjBvFdTUoPcAj-7lQ"
+    },
+    "users": [
+        {
+            "id": 3,
+            "feed": [
+                {
+                    "id": 1,
+                    "title": "Love React",
+                    "text": "React is one of adjasjdaskjdlkasj",
+                    "author": "Johny Doo",
+                    "source": "Twitter",
+                    "sourceUrl": "https: //twitter.com/cleverlifetips/status/1002057843602796544"
+                },
+                {
+                    "id": 2,
+                    "title": "Love Redux",
+                    "author": "John Doe",
+                    "text": "React is one of adjasjdaskjdlkasj"
+                },
+                {
+                    "id": 3,
+                    "title": "Love Everything",
+                    "author": "Inspector Keks",
+                    "text": "React is one of adjasjdaskjdlkasj"
+                },
+                {
+                    "id": 4,
+                    "title": "Love React 228",
+                    "text": "React is one of adjasjdaskjdlkasj",
+                    "author": "Johny Doo",
+                    "source": "Facebook",
+                    "sourceUrl": "https: //twitter.com/cleverlifetips/status/1002057843602796544"
+                }
+            ],
+            "filters": [
+                {
+                    "id": 1,
+                    "name": "Tech"
+                },
+                {
+                    "id": 2,
+                    "name": "Music"
+                },
+                {
+                    "id": 3,
+                    "name": "Machine Learning"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "feed": [
+                {
+                    "id": 1,
+                    "title": "Love React",
+                    "text": "React is one of adjasjdaskjdlkasj",
+                    "author": "Johny Doo",
+                    "source": "Twitter",
+                    "sourceUrl": "https: //twitter.com/cleverlifetips/status/1002057843602796544"
+                },
+                {
+                    "id": 2,
+                    "title": "Love Redux",
+                    "author": "John Doe",
+                    "text": "React is one of adjasjdaskjdlkasj"
+                },
+                {
+                    "id": 3,
+                    "title": "Love Everything",
+                    "author": "Inspector Keks",
+                    "text": "React is one of adjasjdaskjdlkasj"
+                },
+                {
+                    "id": 4,
+                    "title": "Love React 228",
+                    "text": "React is one of adjasjdaskjdlkasj",
+                    "author": "Johny Doo",
+                    "source": "Facebook",
+                    "sourceUrl": "https: //twitter.com/cleverlifetips/status/1002057843602796544"
+                }
+            ],
+            "filters": [
+                {
+                    "id": 1,
+                    "name": "Tech"
+                },
+                {
+                    "id": 2,
+                    "name": "Music"
+                },
+                {
+                    "id": 3,
+                    "name": "Machine Learning"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "feed": [
+                {
+                    "id": 1,
+                    "title": "Love React",
+                    "text": "React is one of adjasjdaskjdlkasj",
+                    "author": "Johny Doo",
+                    "source": "Twitter",
+                    "sourceUrl": "https: //twitter.com/cleverlifetips/status/1002057843602796544"
+                },
+                {
+                    "id": 2,
+                    "title": "Love Redux",
+                    "author": "John Doe",
+                    "text": "React is one of adjasjdaskjdlkasj"
+                },
+                {
+                    "id": 3,
+                    "title": "Love Everything",
+                    "author": "Inspector Keks",
+                    "text": "React is one of adjasjdaskjdlkasj"
+                },
+                {
+                    "id": 4,
+                    "title": "Love React 228",
+                    "text": "React is one of adjasjdaskjdlkasj",
+                    "author": "Johny Doo",
+                    "source": "Facebook",
+                    "sourceUrl": "https: //twitter.com/cleverlifetips/status/1002057843602796544"
+                }
+            ],
+            "filters": [
+                {
+                    "id": 1,
+                    "name": "Tech"
+                },
+                {
+                    "id": 2,
+                    "name": "Music"
+                },
+                {
+                    "id": 3,
+                    "name": "Machine Learning"
+                }
+            ]
+        }
+    ]
+}

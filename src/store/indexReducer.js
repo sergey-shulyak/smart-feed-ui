@@ -1,7 +1,9 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
-import {homePageReducer} from '../components/HomePage'
+import { loginFormReducer } from '../components/LoginForm'
+import { feedPageReducer } from '../components/FeedPage'
 
 export default combineReducers({
-    HomePage: homePageReducer
+    User: loginFormReducer,
+    Feed: feedPageReducer
 })

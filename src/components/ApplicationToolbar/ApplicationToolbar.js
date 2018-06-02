@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,6 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, InputAdornment, MuiThemeProvider } from '@material-ui/core';
 
+import { clearUserData } from '../LoginForm/LoginFormActions';
 import theme from '../theme'
 
 const styles = theme => ({
@@ -42,6 +44,10 @@ class ApplicationToolbar extends React.PureComponent {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
+
+    handleLogOut = () => {
+        this.props.clearUserData();
+    }
 
     render() {
         const { classes } = this.props;
@@ -99,9 +105,9 @@ class ApplicationToolbar extends React.PureComponent {
                             <Link to="/settings">
                                 <MenuItem onClick={this.handleClose}>Settings</MenuItem>
                             </Link>
-                            <Link to="/">
-                                <MenuItem onClick={this.handleClose}>Log out</MenuItem>
-                            </Link>
+                            {/* <Link to="/"> */}
+                            <MenuItem onClick={this.handleLogOut}>Log out</MenuItem>
+                            {/* </Link> */}
                         </Menu>
                     </div>
                 </Toolbar>
@@ -110,4 +116,14 @@ class ApplicationToolbar extends React.PureComponent {
     }
 }
 
-export default withStyles(styles)(ApplicationToolbar);
+function mapStateToProps(state, props) {
+    return {}
+}
+
+function mapDispatchToProps(dispatch, props) {
+    return {
+        clearUserData: () => dispatch(clearUserData())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ApplicationToolbar));

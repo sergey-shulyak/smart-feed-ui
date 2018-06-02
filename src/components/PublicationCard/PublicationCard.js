@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { CardHeader } from '@material-ui/core';
 import moment from 'moment';
+import { getPublicationSubheader } from '../../utils/textUtils';
 
 const styles = theme => ({
     card: {
@@ -22,14 +23,13 @@ const styles = theme => ({
 function PublicationCard(props) {
     const { id, classes, author, title, text, createdAt, source, sourceUrl } = props;
 
-    function getSubheader(author, createdAt) {
-        return `${moment(createdAt).format('HH:mm DD MMM YYYY')} by ${author}`;
-    }
-
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
-                <CardHeader className={classes.cardHeaderText} title={title} subheader={getSubheader(author, createdAt)} />
+                <CardHeader
+                    className={classes.cardHeaderText}
+                    title={title}
+                    subheader={getPublicationSubheader(author, createdAt)} />
                 <CardContent>
                     <Typography component="p">{text.substr(0, 200)}</Typography>
                 </CardContent>

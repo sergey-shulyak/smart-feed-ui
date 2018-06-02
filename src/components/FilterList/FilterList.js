@@ -35,7 +35,7 @@ const styles = {
     }
 };
 
-function PublicationList(props) {
+function FilterList(props) {
     const { classes, filters } = props;
 
     return (
@@ -63,17 +63,18 @@ function PublicationList(props) {
     );
 }
 
-PublicationList.defaultProps = {
-    filters: [{
-        id: 1,
-        name: 'Tech'
-    }, {
-        id: 2,
-        name: 'Music'
-    }, {
-        id: 1,
-        name: 'Machine Learning'
-    }]
+FilterList.defaultProps = {
+    filters: []
+    // filters: [{
+    //     id: 1,
+    //     name: 'Tech'
+    // }, {
+    //     id: 2,
+    //     name: 'Music'
+    // }, {
+    //     id: 3,
+    //     name: 'Machine Learning'
+    // }]
 }
 
-export default withStyles(styles)(PublicationList);
+export default withStyles(styles)(FilterList);

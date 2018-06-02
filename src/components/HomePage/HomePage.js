@@ -1,10 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+
+import LoginForm from '../LoginForm/LoginForm';
+import RegistrationForm from '../RegistrationForm/RegistrationForm';
 
 import styles from './HomePage.css'
+import { relogin } from './HomePageActions';
+
 
 class HomePage extends React.PureComponent {
+    componentDidMount() {
+        this.props.tryLogin()
+    }
+
     render() {
         return (
             <div className={styles.homePage}>
@@ -12,12 +21,18 @@ class HomePage extends React.PureComponent {
                 <Typography variant="headline">Your personal social feed</Typography>
 
                 <div className={styles.homePageButtonContainer}>
-                    <Button>Sign in</Button>
-                    <Button>Register</Button>
+                    <LoginForm />
+                    <RegistrationForm />
                 </div>
             </div>
         )
     }
 }
 
-export default HomePage;
+function mapDispatchToProps(dispatch, props) {
+    return {
+        tryLogin: () => dispatch(relogin())
+    }
+}
+
+export default connect(() => ({}), mapDispatchToProps)(HomePage);
