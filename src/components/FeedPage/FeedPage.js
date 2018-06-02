@@ -1,57 +1,66 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
 
-import styles from './FeedPage.css'
+import { PublicationList } from '../PublicationList';
+import { FilterList } from "../FilterList";
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+        // paddingTop: '25px'
+        padding: '25px'
+    }
+});
 
 class FeedPage extends React.PureComponent {
     render() {
-        return (
-            <div className={styles.feedPage}>
-                <AppBar position="sticky">
-                    <Toolbar>
-                        <IconButton color="inherit" aria-label="Menu">
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="title" color="inherit">
-                            Title
-                        </Typography>
+        const { classes, publications, filters } = this.props;
 
-                        <div>
-                            <IconButton
-                                aria-haspopup="true"
-                                onClick={this.handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle/>
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                onClose={this.handleClose}
-                            >
-                                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                            </Menu>
-                        </div>
-                    </Toolbar>
-                </AppBar>
+        return (
+            <div className={classes.root}>
+                <Grid container spacing={24} alignItems="flex-start">
+                    <Grid item xs={12} sm={3}>
+                        <FilterList filters={filters} />
+                    </Grid>
+                    <Grid item xs={12} sm={7}>
+                        <PublicationList publications={publications} />
+                    </Grid>
+                </Grid>
             </div>
         )
     }
 }
 
-export default FeedPage;
+FeedPage.defaultProps = {
+    publications: [{
+        id: 1,
+        title: 'Love React',
+        text: 'React is one of adjasjdaskjdlkasj',
+        author: 'Johny Doo',
+        source: 'Twitter',
+        sourceUrl: 'https://twitter.com/cleverlifetips/status/1002057843602796544'
+    }, {
+        id: 12,
+        title: 'Love Redux',
+        author: 'John Doe',
+        text: 'React is one of adjasjdaskjdlkasj',
+    }, {
+        id: 228,
+        title: 'Love Everything',
+        author: 'Inspector Keks',
+        text: 'React is one of adjasjdaskjdlkasj',
+    }],
+    filters: [{
+        id: 1,
+        name: 'Tech'
+    }, {
+        id: 2,
+        name: 'Music'
+    }, {
+        id: 1,
+        name: 'Machine Learning'
+    }]
+}
+
+export default withStyles(styles)(FeedPage);
