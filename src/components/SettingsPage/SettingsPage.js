@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Avatar, TextField, List, ListItem, Checkbox, ListItemText } from '@material-ui/core';
 
+import capitalize from 'lodash/capitalize';
+
 const styles = theme => ({
     root: {
         marginTop: '25px',
@@ -36,6 +38,24 @@ const styles = theme => ({
         verticalAlign: 'middle'
     },
 });
+
+const socialAccounts = [ // брать с сервака
+    {
+        id: 1,
+        name: 'medium',
+        signedIn: false
+    },
+    {
+        id: 2,
+        name: 'facebook',
+        signedIn: true
+    },
+    {
+        id: 3,
+        name: 'twitter',
+        signedIn: true
+    }
+]
 
 class SettingsPage extends React.PureComponent {
     render() {
@@ -93,19 +113,19 @@ class SettingsPage extends React.PureComponent {
                                 <Typography variant="headline">Social media accounts</Typography>
                                 <List>
                                     <Grid container>
-                                        {[0, 1, 2, 3].map(value => (
+                                        {socialAccounts.map(account => (
                                             <Grid item xs={6} sm={4}>
                                                 <ListItem
-                                                    key={value}
-                                                    role={undefined}
+                                                    key={account.id}
                                                     dense
                                                     button
+                                                    disableRipple
                                                     className={classes.listItem} >
                                                     <Checkbox
                                                         tabIndex={-1}
-                                                        disableRipple
+                                                        checked={account.signedIn}
                                                     />
-                                                    <ListItemText primary={`Line item ${value + 1}`} />
+                                                    <ListItemText primary={capitalize(account.name)} />
                                                 </ListItem>
                                             </Grid>
                                         ))}

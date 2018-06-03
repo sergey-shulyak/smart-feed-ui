@@ -37,9 +37,9 @@ function PublicationCard(props) {
                     <Button size="small">
                         <Link to={`/feed/${id}`}>Read in app</Link>
                     </Button>
-                    <Button size="small">
-                        <a href={sourceUrl} target="_blank">Read on {source}</a>
-                    </Button>
+                    <Link to={sourceUrl || ''} target="_blank">
+                        <Button size="small"> Read on {source} </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </div>
