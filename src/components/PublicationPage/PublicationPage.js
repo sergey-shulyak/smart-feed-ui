@@ -46,12 +46,12 @@ class PublicationPage extends React.PureComponent {
 
     render() {
         const { classes, publication } = this.props;
-        const { author, createdAt, text, title, sourceUrl } = publication; //TODO: ДОбавить на бекенде
+        const { author, createdAt, text, title, url } = publication; //TODO: ДОбавить на бекенде
 
         const header = (
             <div>
                 <div>{getPublicationSubheader(author, createdAt)}</div>
-                <Link to={sourceUrl || ''} target="_blank"><Button color="primary"> Read at source </Button></Link>
+                <Link to={url || ''} target="_blank"><Button color="primary"> Read at source </Button></Link>
             </div>
             );
 

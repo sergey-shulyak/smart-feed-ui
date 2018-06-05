@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 function PublicationCard(props) {
-    const { id, classes, author, title, text, createdAt, source, sourceUrl } = props;
+    const { id, classes, author, title, text, createdAt, url } = props;
 
     return (
         <div className={classes.root}>
@@ -37,8 +37,8 @@ function PublicationCard(props) {
                     <Button size="small">
                         <Link to={`/feed/${id}`}>Read in app</Link>
                     </Button>
-                    <Link to={sourceUrl || ''} target="_blank">
-                        <Button size="small"> Read on {source} </Button>
+                    <Link to={url || ''} target="_blank">
+                        <Button size="small"> Read at source </Button>
                     </Link>
                 </CardActions>
             </Card>

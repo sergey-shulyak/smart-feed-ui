@@ -45,9 +45,9 @@ class ApplicationToolbar extends React.PureComponent {
         this.setState({ anchorEl: null });
     };
 
-    handleLogOut = () => {
-        this.props.clearUserData();
-    };
+    // handleLogOut = () => {
+        // this.props.clearUserData();
+    // };
 
     render() {
         const { classes } = this.props;
@@ -87,9 +87,9 @@ class ApplicationToolbar extends React.PureComponent {
                             <Link to="/settings">
                                 <MenuItem onClick={this.handleClose}>Settings</MenuItem>
                             </Link>
-                            {/* <Link to="/"> */}
+                            <a href="http://localhost:3000/logout">
                             <MenuItem onClick={this.handleLogOut}>Log out</MenuItem>
-                            {/* </Link> */}
+                            </a>
                         </Menu>
                     </div>
                 </Toolbar>

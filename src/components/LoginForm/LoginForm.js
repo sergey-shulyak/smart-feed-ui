@@ -86,15 +86,17 @@ class LoginForm extends React.Component {
                             type="password"
                             fullWidth
                             onChange={this.handleTextChange} />
-                        <Button className={classNames(classes.button)} variant="raised" size="small">
+                        <Button disabled className={classNames(classes.button)} variant="raised" size="small">
                             Sign in with Google+
                         </Button>
-                        <Button className={classes.button} variant="raised" size="small">
+                        <Button disabled className={classes.button} variant="raised" size="small">
                             Sign in with Facebook
                         </Button>
-                        <Button className={classNames(classes.button)} variant="raised" size="small">
-                            Sign in with Twitter
-                        </Button>
+                        <a href="http://localhost:3000/auth/twitter">
+                            <Button className={classNames(classes.button)} variant="raised" color="primary" size="small">
+                                Sign in with Twitter
+                            </Button>
+                        </a>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="secondary"> Cancel </Button>

@@ -75,7 +75,7 @@ class SettingsPage extends React.PureComponent {
                                 <Typography variant="title">
                                     <Avatar
                                         alt={user.fullName}
-                                        src={user.photoUrl}
+                                        src={user.avatarUrl}
                                         className={classes.avatar}
                                     />{user.fullName}
                                 </Typography>

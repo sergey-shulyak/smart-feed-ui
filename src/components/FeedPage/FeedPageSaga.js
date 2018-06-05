@@ -1,5 +1,5 @@
 import { takeEvery, call, put, all, select } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { LOCATION_CHANGE, replace } from 'react-router-redux'
 
 import * as api from '../../api/feedApi';
 import * as actions from './FeedPageActions';
@@ -47,7 +47,7 @@ export function* fetchFeed() {
         yield call(fetchFeedPublications, userData.id);
         yield call(fetchFilters, userData.id)
     } catch (error) {
-        console.error(error);
+        yield put(replace('/'));
     }
 }
 
