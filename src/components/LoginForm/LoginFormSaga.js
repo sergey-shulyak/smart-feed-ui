@@ -1,6 +1,5 @@
 import { takeLatest, takeEvery, call, put, all } from 'redux-saga/effects';
 import { replace } from 'react-router-redux';
-import cookies from 'js-cookie';
 
 import * as api from '../../api/userApi';
 import * as actions from './LoginFormActions';

@@ -103,15 +103,17 @@ class RegistrationForm extends React.Component {
                             label="Your name"
                             fullWidth
                             onChange={this.handleTextChange} />
-                        <Button className={classNames(classes.button)} variant="raised" size="small">
+                        <Button className={classNames(classes.button)} disabled variant="raised" size="small">
                             Continue with Google+
                         </Button>
-                        <Button className={classes.button} variant="raised" size="small">
+                        <Button className={classes.button} disabled variant="raised" size="small">
                             Continue with Facebook
                         </Button>
-                        <Button className={classNames(classes.button)} variant="raised" size="small">
-                            Continue with Twitter
-                        </Button>
+                        <a href="http://localhost:3000/auth/twitter">
+                            <Button className={classNames(classes.button)} variant="raised" color="primary" size="small">
+                                Continue with Twitter
+                            </Button>
+                        </a>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="secondary"> Cancel </Button>

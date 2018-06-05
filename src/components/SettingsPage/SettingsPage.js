@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { Avatar, TextField, List, ListItem, Checkbox, ListItemText } from '@material-ui/core';
 
 import capitalize from 'lodash/capitalize';
-import {addUserCategory, fetchSettings, removeUserCategory} from "./SettingsPageActions";
+import { addUserCategory, fetchSettings, removeUserCategory } from "./SettingsPageActions";
 
 const styles = theme => ({
     root: {
@@ -43,7 +43,7 @@ const styles = theme => ({
 
 class SettingsPage extends React.PureComponent {
     handleCategoryCheck = (e) => {
-        const {name: categoryId, checked} = e.target;
+        const { name: categoryId, checked } = e.target;
 
         if (checked) {
             this.props.addUserCategory(categoryId);
@@ -51,6 +51,16 @@ class SettingsPage extends React.PureComponent {
             this.props.removeUserCategory(categoryId);
         }
     };
+
+    // handleAccountChange = (e) => {
+    //     const {checked, name: integrationType } = e.target;
+
+    //     if (!checked) {
+    //         // eslint-disable-next-line no-restricted-globals
+    //         location.href = "http://localhost:3001/auth/twitter"
+    //     }
+    // }
+
     componentDidMount() {
         this.props.fetchSettings();
     }
@@ -115,18 +125,21 @@ class SettingsPage extends React.PureComponent {
                                     <Grid container>
                                         {integrations.map(account => (
                                             <Grid item xs={6} sm={4}>
-                                                <ListItem
-                                                    key={account.id}
-                                                    dense
-                                                    button
-                                                    disableRipple
-                                                    className={classes.listItem} >
-                                                    <Checkbox
-                                                        tabIndex={-1}
-                                                        checked={account.isEnabled}
-                                                    />
-                                                    <ListItemText primary={capitalize(account.type)} />
-                                                </ListItem>
+                                                <a href="http://localhost:3000/auth/twitter">
+                                                    <ListItem
+                                                        key={account.id}
+                                                        dense
+                                                        button
+                                                        disableRipple
+                                                        className={classes.listItem} >
+
+                                                        <Checkbox
+                                                            tabIndex={-1}
+                                                            checked={account.isEnabled}
+                                                        />
+                                                        <ListItemText primary={capitalize(account.type)} />
+                                                    </ListItem>
+                                                </a>
                                             </Grid>
                                         ))}
                                     </Grid >

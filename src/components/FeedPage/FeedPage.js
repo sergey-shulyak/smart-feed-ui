@@ -95,7 +95,9 @@ class FeedPage extends React.PureComponent {
                         <FilterList filters={filters} onFilterSelect={this.handleFilter} />
                     </Grid>
                     <Grid item xs={12} sm={12} md={8}>
-                        <PublicationList publications={publicationsToShow} />
+                        {publicationsToShow.length !== 0
+                            ? <PublicationList publications={publicationsToShow} />
+                            : <Paper className={classes.paper}>Add at least one source in settings</Paper>}
                     </Grid>
                 </Grid>
             </div>
