@@ -1,14 +1,14 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-import {PublicationList} from '../PublicationList';
-import {FilterList} from "../FilterList";
-import {fetchFeed, fetchFeedCategory} from './FeedPageActions';
+import { PublicationList } from '../PublicationList';
+import { FilterList } from "../FilterList";
+import { fetchFeed, fetchFeedCategory } from './FeedPageActions';
 
 import isEmpty from 'lodash/isEmpty'
-import {replace} from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Paper from "@material-ui/core/Paper";
@@ -37,14 +37,16 @@ class FeedPage extends React.PureComponent {
     };
 
     handleSearch = (e) => {
-        const {value} = e.target;
+        const { value: query } = e.target;
 
-        if (value.length === 0) {
-            this.setState({filteredPublications: null})
+        if (query.length === 0) {
+            this.setState({ filteredPublications: null })
         }
 
-        const filteredPublications = this.props.publications.filter(pub => pub.text.includes(value));
-        this.setState({filteredPublications})
+        const filteredPublications = this.props.publications
+            .filter(pub => pub.text.includes(query) || (pub.title && pub.title.includes(query)));
+
+        this.setState({ filteredPublications })
     };
 
     handleFilter = (filter) => {
@@ -56,17 +58,12 @@ class FeedPage extends React.PureComponent {
     };
 
     componentDidMount() {
-        if (isEmpty(this.props.user)) {
-            this.props.returnToHome();
-            return;
-        }
-
         this.props.fetchFeed();
     }
 
     render() {
-        const {classes, publications, filters} = this.props;
-        const {filteredPublications} = this.state;
+        const { classes, publications, filters } = this.props;
+        const { filteredPublications } = this.state;
 
         const publicationsToShow = isEmpty(filteredPublications) ? publications : filteredPublications;
 
@@ -87,18 +84,18 @@ class FeedPage extends React.PureComponent {
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
-                                                <Search/>
+                                                <Search />
                                             </InputAdornment>
                                         ),
-                                    }}/>
+                                    }} />
                             </Paper>
                         </Grid>
                     </Grid>
                     <Grid item xs={12} sm={12} md={2}>
-                        <FilterList filters={filters} onFilterSelect={this.handleFilter}/>
+                        <FilterList filters={filters} onFilterSelect={this.handleFilter} />
                     </Grid>
                     <Grid item xs={12} sm={12} md={8}>
-                        <PublicationList publications={publicationsToShow}/>
+                        <PublicationList publications={publicationsToShow} />
                     </Grid>
                 </Grid>
             </div>

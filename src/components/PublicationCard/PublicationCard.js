@@ -31,7 +31,7 @@ function PublicationCard(props) {
                     title={title}
                     subheader={getPublicationSubheader(author, createdAt)} />
                 <CardContent>
-                    <Typography component="p">{text.substr(0, 200)}</Typography>
+                    <Typography component="p">{`${text.substr(0, 200)} ...`}</Typography>
                 </CardContent>
                 <CardActions>
                     <Button size="small">
