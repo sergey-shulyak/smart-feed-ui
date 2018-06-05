@@ -5,16 +5,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Search from '@material-ui/icons/Search';
+import Settings from '@material-ui/icons/Settings';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, InputAdornment, MuiThemeProvider } from '@material-ui/core';
 
 import { clearUserData } from '../LoginForm/LoginFormActions';
-import theme from '../theme'
 
 const styles = theme => ({
     flex: {
@@ -29,6 +25,10 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         color: 'white'
     },
+    userName: {
+        color: 'white',
+        display: 'inline-block'
+    }
 });
 
 class ApplicationToolbar extends React.PureComponent {
@@ -47,7 +47,7 @@ class ApplicationToolbar extends React.PureComponent {
 
     handleLogOut = () => {
         this.props.clearUserData();
-    }
+    };
 
     render() {
         const { classes } = this.props;
@@ -55,38 +55,20 @@ class ApplicationToolbar extends React.PureComponent {
         const open = Boolean(anchorEl);
 
         return (
-            <AppBar position="static">
+            <AppBar position="sticky">
                 <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
                     <Typography variant="title" color="inherit" className={classes.flex}>
                         <Link to="/feed">Smart Feed</Link>
                     </Typography>
-                    <MuiThemeProvider theme={theme}>
-                        <TextField
-                            id="name"
-                            className={classes.textField}
-                            label="Search"
-                            value={this.state.name}
-                            color="inherit"
-                            margin="normal"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Search />
-                                    </InputAdornment>
-                                ),
-                            }} />
-                    </MuiThemeProvider>
                     <div>
+                        <Typography variant="body2" className={classes.userName}>{this.props.user.fullName}</Typography>
                         <IconButton
                             aria-owns="menu-appbar"
                             aria-haspopup="true"
                             onClick={this.handleMenu}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <Settings />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -117,7 +99,9 @@ class ApplicationToolbar extends React.PureComponent {
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        user: state.User.user
+    }
 }
 
 function mapDispatchToProps(dispatch, props) {

@@ -1,11 +1,12 @@
 import { handleActions } from 'redux-actions';
-import { saveFeedData, clearFeedData } from './FeedPageActions';
+import { saveFeedData, clearFeedData, saveFilters } from './FeedPageActions';
 
-const defaultState = [];
+const defaultState = {};
 
 const feedReducer = handleActions({
-    [saveFeedData]: (state, { payload: feedData }) => feedData,
-    [clearFeedData]: (state, action) => defaultState
+    [saveFeedData]: (state, { payload: publications }) => ({...state, publications}),
+    [saveFilters]: (state, {payload: filters}) => ({...state, filters}),
+    [clearFeedData]: (state, action) => ({...state, publications: []})
 }, defaultState);
 
 export default feedReducer;

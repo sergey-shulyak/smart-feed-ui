@@ -1,6 +1,6 @@
 // const initialState = {};
 
-// function homePageReducer(state = initialState, action) {
+// function settingsPageReducer(state = initialState, action) {
 //     switch (action.type) {
 //         case 'TEST':
 //             return state;
@@ -9,4 +9,4 @@
 //     }
 // }
 
-// export default homePageReducer;
+// export default settingsPageReducer;

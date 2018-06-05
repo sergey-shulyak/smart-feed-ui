@@ -23,8 +23,9 @@ export function* sendLoginData({ payload = {} }) {
 
 export function* clearUserData({ payload = {} }) {
     // cookies.remove('accessToken', { path: 'localhost' }); //TODO доделать это
-    console.log('cook', cookies.get());
-    yield put(replace('/'))
+    // console.log('cook', cookies.get());
+    yield call(api.logout);
+    // yield put(replace('/'))
 }
 
 export default function* () {

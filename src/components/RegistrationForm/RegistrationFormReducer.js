@@ -3,9 +3,9 @@
 
 // const defaultState = {};
 
-// const userReducer = handleActions({
+// const settingsReducer = handleActions({
 //     [saveUserData]: (state, { payload: userData }) => ({ ...userData }),
 //     [clearUserData]: (state, action) => defaultState
 // }, defaultState);
 
-// export default userReducer;
+// export default settingsReducer;

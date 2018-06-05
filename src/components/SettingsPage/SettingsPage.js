@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { Avatar, TextField, List, ListItem, Checkbox, ListItemText } from '@material-ui/core';
 
 import capitalize from 'lodash/capitalize';
+import {addUserCategory, fetchSettings, removeUserCategory} from "./SettingsPageActions";
 
 const styles = theme => ({
     root: {
@@ -39,27 +41,22 @@ const styles = theme => ({
     },
 });
 
-const socialAccounts = [ // брать с сервака
-    {
-        id: 1,
-        name: 'medium',
-        signedIn: false
-    },
-    {
-        id: 2,
-        name: 'facebook',
-        signedIn: true
-    },
-    {
-        id: 3,
-        name: 'twitter',
-        signedIn: true
-    }
-]
-
 class SettingsPage extends React.PureComponent {
+    handleCategoryCheck = (e) => {
+        const {name: categoryId, checked} = e.target;
+
+        if (checked) {
+            this.props.addUserCategory(categoryId);
+        } else {
+            this.props.removeUserCategory(categoryId);
+        }
+    };
+    componentDidMount() {
+        this.props.fetchSettings();
+    }
+
     render() {
-        const { classes, user } = this.props;
+        const { classes, user, categories, integrations } = this.props;
 
         return (
             <div className={classes.root}>
@@ -92,10 +89,10 @@ class SettingsPage extends React.PureComponent {
                                 <Typography variant="headline">Interests</Typography>
                                 <List>
                                     <Grid container>
-                                        {[0, 1, 2, 3].map(value => (
+                                        {categories.map(category => (
                                             <Grid item xs={6} sm={4}>
                                                 <ListItem
-                                                    key={value}
+                                                    key={category.id}
                                                     role={undefined}
                                                     dense
                                                     button
@@ -103,8 +100,11 @@ class SettingsPage extends React.PureComponent {
                                                     <Checkbox
                                                         tabIndex={-1}
                                                         disableRipple
+                                                        name={category.id}
+                                                        checked={category.isEnabled}
+                                                        onChange={this.handleCategoryCheck}
                                                     />
-                                                    <ListItemText primary={`Line item ${value + 1}`} />
+                                                    <ListItemText primary={category.title} />
                                                 </ListItem>
                                             </Grid>
                                         ))}
@@ -113,7 +113,7 @@ class SettingsPage extends React.PureComponent {
                                 <Typography variant="headline">Social media accounts</Typography>
                                 <List>
                                     <Grid container>
-                                        {socialAccounts.map(account => (
+                                        {integrations.map(account => (
                                             <Grid item xs={6} sm={4}>
                                                 <ListItem
                                                     key={account.id}
@@ -123,9 +123,9 @@ class SettingsPage extends React.PureComponent {
                                                     className={classes.listItem} >
                                                     <Checkbox
                                                         tabIndex={-1}
-                                                        checked={account.signedIn}
+                                                        checked={account.isEnabled}
                                                     />
-                                                    <ListItemText primary={capitalize(account.name)} />
+                                                    <ListItemText primary={capitalize(account.type)} />
                                                 </ListItem>
                                             </Grid>
                                         ))}
@@ -152,12 +152,30 @@ SettingsPage.defaultProps = {
     user: {
         fullName: 'Gaben',
         photoUrl: 'http://www.gamasutra.com/db_area/images/news/2017/Feb/291225/gabe_newell_thumb.jpg',
-
-    }
+    },
+    categories: [],
+    integrations: []
 }
 
 SettingsPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SettingsPage);
+function mapStateToProps(state, props) {
+    return {
+        user: state.User.user,
+        categories: state.User.settings.categories,
+        integrations: state.User.settings.integrations
+    }
+}
+
+function mapDispatchToProps(dispatch, props) {
+    return {
+        fetchSettings: () => dispatch(fetchSettings()),
+        addUserCategory: (categoryId) => dispatch(addUserCategory(categoryId)),
+        removeUserCategory: (categoryId) => dispatch(removeUserCategory(categoryId))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SettingsPage));

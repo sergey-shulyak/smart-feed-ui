@@ -1,6 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { withRouter, Link} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -10,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { getPublicationSubheader } from '../../utils/textUtils';
+import {fetchPublication} from "./PublicationPageActions";
 
 const styles = theme => ({
     root: {
@@ -36,13 +38,20 @@ const styles = theme => ({
 });
 
 class PublicationPage extends React.PureComponent {
+    componentDidMount() {
+        const {fetchPublication, match} = this.props;
+
+        fetchPublication(match.params.publicationId);
+    }
+
     render() {
-        const { classes, author, createdAt, text, title, sourceUrl } = this.props;
+        const { classes, publication } = this.props;
+        const { author, createdAt, text, title, sourceUrl } = publication; //TODO: ДОбавить на бекенде
 
         const header = (
             <div>
                 <div>{getPublicationSubheader(author, createdAt)}</div>
-                <Link to={sourceUrl} target="_blank"><Button color="primary"> Read at source </Button></Link>
+                <Link to={sourceUrl || ''} target="_blank"><Button color="primary"> Read at source </Button></Link>
             </div>
             );
 
@@ -268,10 +277,23 @@ PublicationPage.defaultProps = {
             Nam fermentum nisl sed tortor sagittis dignissim. Etiam rutrum eu lacus vel
             fringilla. Integer id augue diam. Cras fermentum massa bibendum, pulvinar augue a,
             elementum tellus.`
-}
+};
 
 PublicationPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PublicationPage);
+function mapStateToProps(state, props) {
+    return {
+        publication: state.Publication
+    }
+}
+
+function mapDispatchToProps(dispatch, props) {
+    return {
+        fetchPublication: (publicationId) => dispatch(fetchPublication(publicationId))
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(PublicationPage)));
+// export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(PublicationPage));

@@ -16,7 +16,7 @@ class Layout extends React.PureComponent {
 
         return (
             <div className={classes.root}>
-                <ApplicationToolbar />
+                <ApplicationToolbar onSearch={this.handleSearch}/>
                 {this.props.children}
             </div>
         )
